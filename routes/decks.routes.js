@@ -47,7 +47,7 @@ router.get("/decks/my", isAuthenticated, (req, res, next) => {
         .catch((err) => res.json(err));
 });
 
-// FIX IT!!
+
 // get one deck
 router.get('/decks/:id', (req, res, next) => {
     const { id } = req.params;
