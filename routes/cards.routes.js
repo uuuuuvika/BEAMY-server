@@ -47,8 +47,8 @@ router.get('/card/:id', (req, res, next) => {
         .catch(error => res.json(error));
 });
 
-
-// // update one
+ 
+// update one
 router.put('/card/:id', (req, res, next) => {
     const { id } = req.params;
     if (!mongoose.Types.ObjectId.isValid(id)) {
