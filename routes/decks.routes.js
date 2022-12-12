@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const Deck = require("../models/Deck.model");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
+const User = require("../models/User.model");
+const { response } = require("express");
 
 
 // create a new deck 
@@ -38,7 +40,7 @@ router.get("/decks/my", isAuthenticated, (req, res, next) => {
     const user = req.payload;
     console.log("HEY, HERE IS THE USER:", user)
 
-    Deck.find({createdBy: user._id})
+    Deck.find({$or: [{createdBy: user._id}, {adoptedBy: user._id}]})
         .populate("flashcards")
         .then((allDecks) => {
             console.log(allDecks);
@@ -59,6 +61,22 @@ router.get('/decks/:id', (req, res, next) => {
         .populate("flashcards")
         .then(deck => res.status(200).json(deck))
         .catch(error => res.json(error));
+});
+
+// get one deck and push it inside user decks //
+router.put('/decks/:id/add', (req, res, next) => {
+    const { id } = req.params;
+    const user = req.body;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(400).json({ message: 'You suck!' });
+        return;
+    }
+    Deck.findByIdAndUpdate(id, { $push: { adoptedBy: user._id} }, {new: true})
+    .then(res => User.findByIdAndUpdate(user._id, { $push: { decks: id } }, {new: true}) )
+        .then(result => {
+            console.log(`DECK WITH ID ${id} added to the user ${user.name}` )
+            res.status(200).json(result)})
+        .catch(error => console.log("NO USER HERE"));
 });
 
 

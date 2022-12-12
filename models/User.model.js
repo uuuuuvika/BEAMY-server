@@ -17,13 +17,10 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Name is required."],
     },
-    // token: {
-    //   type: String,
-    // },
     decks: [{
       type: Schema.Types.ObjectId,
-      ref: 'Cards',
-    }]
+      ref: 'Deck',
+    }],
   },
   {
     timestamps: true,
