@@ -36,7 +36,9 @@ router.get('/decks/:deckId/card', (req, res, next) => {
 
 // get one
 router.get('/card/:id', (req, res, next) => {
+
     const { id } = req.params;
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(400).json({ message: 'You suck!' });
         return;
@@ -50,7 +52,9 @@ router.get('/card/:id', (req, res, next) => {
  
 // update one
 router.put('/card/:id', (req, res, next) => {
+
     const { id } = req.params;
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(400).json({ message: 'Specified id is not valid' });
         return;
@@ -63,7 +67,9 @@ router.put('/card/:id', (req, res, next) => {
 
 // delete one
 router.delete('/card/:id', (req, res, next) => {
+
     const { id } = req.params;
+
     if (!mongoose.Types.ObjectId.isValid(id)) {
         res.status(400).json({ message: 'Specified id is not valid' });
         return;
