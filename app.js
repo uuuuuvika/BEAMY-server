@@ -1,6 +1,5 @@
 require("dotenv").config();
 require("./db");
-const { isAuthenticated } = require("./middleware/jwt.middleware");
 
 const express = require("express");
 const app = express();
@@ -16,6 +15,9 @@ app.use("/", decksRoutes);
 
 const cardsRouter = require('./routes/cards.routes'); 
 app.use('/', cardsRouter);
+
+const statsRoutes = require('./routes/stats.routes');
+app.use('/stats', statsRoutes);
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
