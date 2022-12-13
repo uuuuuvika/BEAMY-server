@@ -63,6 +63,7 @@ router.get('/decks/:id', (req, res, next) => {
         .catch(error => res.json(error));
 });
 
+
 // get one deck and push it inside user decks //
 router.put('/decks/:id/add', (req, res, next) => {
     const { id } = req.params;
@@ -71,10 +72,29 @@ router.put('/decks/:id/add', (req, res, next) => {
         res.status(400).json({ message: 'You suck!' });
         return;
     }
+    // TODO: dont need to store this in the deck, it's enough in the user record; the same for the mext route
     Deck.findByIdAndUpdate(id, { $push: { adoptedBy: user._id} }, {new: true})
     .then(res => User.findByIdAndUpdate(user._id, { $push: { decks: id } }, {new: true}) )
         .then(result => {
             console.log(`DECK WITH ID ${id} added to the user ${user.name}` )
+            res.status(200).json(result)})
+        .catch(error => console.log("NO USER HERE"));
+});
+
+
+// remove deck from users' decks
+router.put('/decks/:id/remove', (req, res, next) => {
+    const { id } = req.params;
+    const user = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        res.status(400).json({ message: 'You suck!' });
+        return;
+    }
+    Deck.findByIdAndUpdate(id, { $pull: { adoptedBy: user._id} })
+    .then(res => User.findByIdAndUpdate(user._id, { $pull: { decks: id } }) )
+        .then(result => {
+            console.log(`DECK WITH ID ${id} REMOVED FROM the user ${user.name}` )
             res.status(200).json(result)})
         .catch(error => console.log("NO USER HERE"));
 });

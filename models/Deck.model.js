@@ -13,10 +13,10 @@ const deckSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
-        adoptedBy: {
+        adoptedBy: [{
             type: Schema.Types.ObjectId,
             ref: 'User',
-        },
+        }],
         flashcards: [{
             type: Schema.Types.ObjectId,
             ref: 'Card'
