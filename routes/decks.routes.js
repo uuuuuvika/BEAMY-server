@@ -1,7 +1,5 @@
 const router = require("express").Router();
 const mongoose = require("mongoose");
-//const { expressjwt: jwt } = require("express-jwt");
-//const jwt = require("jsonwebtoken");
 const Deck = require("../models/Deck.model");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 const User = require("../models/User.model");
