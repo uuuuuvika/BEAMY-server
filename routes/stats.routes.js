@@ -16,7 +16,6 @@ router.post('/:deckId', (req, res) => {
         .catch((err) => res.json(err));
 });
 
-//
 router.get('/lastStudied', isAuthenticated, (req, res) => {
 
     const user = req.payload;
@@ -34,6 +33,7 @@ router.get('/lastStudied', isAuthenticated, (req, res) => {
                         console.log("DECK", cards)
                         res.json(cards)
                     })
+
             }
         })
         .catch(error => res.json(error));
