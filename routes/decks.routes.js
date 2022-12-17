@@ -30,8 +30,6 @@ router.get("/decks", (req, res, next) => {
 });
 
 
-//get last studied
-
 //get all USER decks on profile page
 router.get("/decks/my", isAuthenticated, (req, res, next) => {
 
