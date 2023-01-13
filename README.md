@@ -1,6 +1,6 @@
 # BEAMY-server
 
-##MongoDB backend of Beamy
+## MongoDB backend of Beamy
 
 ### Setup
 
