@@ -7,7 +7,7 @@
 - Fork this repo
 - Clone this repo
 - Run MongoDB locally (for example MongoDB Compass)
-- In the root folder create .env file and add the following lines to it:
+- In the root folder create `.env` file and add the following lines to it:
 
 ```shell
 PORT=5005
