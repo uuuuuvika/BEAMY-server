@@ -26,7 +26,6 @@ router.get('/lastStudied', isAuthenticated, (req, res) => {
                 res.json([]);
             }
             else {
-                //console.log("DECK", response[0].deckId)
                 Card.find({ deckId: response[0].deckId })
                     .populate('deckId')
                     .then((cards) => {
