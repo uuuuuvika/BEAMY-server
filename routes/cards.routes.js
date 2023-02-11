@@ -19,7 +19,7 @@ router.post('/decks/:deckId/card', (req, res, next) => {
 });
 
 
-//get all cards from specific deck
+// get all cards from specific deck
 router.get('/decks/:deckId/card', (req, res, next) => {
 
     const {deckId} = req.params;
@@ -34,7 +34,7 @@ router.get('/decks/:deckId/card', (req, res, next) => {
 });
 
 
-// get one
+// get one card
 router.get('/card/:id', (req, res, next) => {
 
     const { id } = req.params;

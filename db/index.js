@@ -1,8 +1,7 @@
 const mongoose = require("mongoose");
 require('dotenv').config();
 
-const MONGO_URI =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/BEAMY";
+const MONGO_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/BEAMY";
 
 mongoose
   .connect(MONGO_URI)
